@@ -1,0 +1,32 @@
+# Build output
+/fidgetdesk
+/fidgetdesk.exe
+/dist/
+/bin/
+*.exe
+*.test
+
+# Coverage
+*.out
+coverage.html
+
+# Local data: never commit real client data
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.log
+data/
+
+# Secrets
+.env
+.env.*
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
