@@ -1,5 +1,7 @@
 # FidgetDesk
 
+Vibecoding my own helpdesk app completely for fun to teach myself how to use github better
+
 [![CI](https://github.com/codejenganova/fidgetdesk/actions/workflows/ci.yml/badge.svg)](https://github.com/codejenganova/fidgetdesk/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
