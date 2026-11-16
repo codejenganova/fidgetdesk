@@ -61,7 +61,7 @@ internal/web/       HTTP handlers, embedded HTML templates and CSS
 
 ## Contributing
 
-Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get set up and how pull requests work.
+Not right just yet! In very early stage. 
 
 ## License
 
