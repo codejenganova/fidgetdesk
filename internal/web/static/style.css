@@ -1,0 +1,26 @@
+:root {
+  color-scheme: light dark;
+  --accent: #3b6fd8;
+  --muted: #6b7280;
+  --border: color-mix(in srgb, currentColor 15%, transparent);
+  --error: #c0392b;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+body { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+header { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+h1 { margin: 0.5rem 0; color: var(--accent); }
+h2 { font-size: 1.1rem; margin-top: 2rem; }
+.muted { color: var(--muted); font-size: 0.9em; }
+.error { color: var(--error); border: 1px solid var(--error); padding: 0.5rem 0.75rem; border-radius: 6px; }
+
+form { display: grid; gap: 0.5rem; max-width: 520px; }
+form.inline { display: flex; gap: 0.25rem; max-width: none; }
+label { display: grid; gap: 0.2rem; font-size: 0.9rem; }
+input, select, textarea, button { font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--border); border-radius: 6px; }
+button { background: var(--accent); color: white; border: none; cursor: pointer; justify-self: start; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr.status-closed td { opacity: 0.55; }

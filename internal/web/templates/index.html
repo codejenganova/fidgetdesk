@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FidgetDesk</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>FidgetDesk</h1>
+    <span class="muted">v{{.Version}} · data is in memory only until the SQLite store lands</span>
+  </header>
+
+  <main>
+    {{with .Error}}<p class="error" role="alert">{{.}}</p>{{end}}
+
+    <section>
+      <h2>New ticket</h2>
+      {{if .Clients}}
+      <form method="post" action="/tickets">
+        <label>Client
+          <select name="client_id" required>
+            {{range .Clients}}<option value="{{.ID}}">{{.Name}}</option>{{end}}
+          </select>
+        </label>
+        <label>Title <input name="title" required maxlength="200" placeholder="Printer jammed again"></label>
+        <label>Details <textarea name="body" rows="3"></textarea></label>
+        <button type="submit">Add ticket</button>
+      </form>
+      {{else}}
+      <p class="muted">Add a client first: anyone or anywhere you help.</p>
+      {{end}}
+    </section>
+
+    <section>
+      <h2>Tickets</h2>
+      {{if .Tickets}}
+      <table>
+        <thead><tr><th>#</th><th>Client</th><th>Title</th><th>Status</th><th>Opened</th></tr></thead>
+        <tbody>
+        {{range .Tickets}}
+          <tr class="status-{{.Status}}">
+            <td>{{.ID}}</td>
+            <td>{{.ClientName}}</td>
+            <td>{{.Title}}{{with .Body}}<div class="muted">{{.}}</div>{{end}}</td>
+            <td>
+              <form method="post" action="/tickets/{{.ID}}/status" class="inline">
+                <select name="status">
+                  {{$current := .Status}}
+                  {{range statuses}}<option value="{{.}}"{{if eq . $current}} selected{{end}}>{{.}}</option>{{end}}
+                </select>
+                <button type="submit">Save</button>
+              </form>
+            </td>
+            <td>{{.CreatedAt.Format "2006-01-02 15:04"}}</td>
+          </tr>
+        {{end}}
+        </tbody>
+      </table>
+      {{else}}
+      <p class="muted">No tickets yet.</p>
+      {{end}}
+    </section>
+
+    <section>
+      <h2>Clients</h2>
+      <form method="post" action="/clients">
+        <label>Name <input name="name" required maxlength="200" placeholder="Smile Dental"></label>
+        <label>Notes <input name="notes" placeholder="Front desk PC is the old Dell"></label>
+        <button type="submit">Add client</button>
+      </form>
+      {{if .Clients}}
+      <ul>{{range .Clients}}<li><strong>{{.Name}}</strong>{{with .Notes}} <span class="muted">{{.}}</span>{{end}}</li>{{end}}</ul>
+      {{end}}
+    </section>
+  </main>
+</body>
+</html>
